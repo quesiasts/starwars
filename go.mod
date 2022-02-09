@@ -1,4 +1,4 @@
-module StarWars-CRUD
+module starwars
 
 go 1.17
 
