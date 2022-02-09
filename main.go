@@ -8,11 +8,10 @@ import (
 )
 
 type Response struct {
-	ID           string `json:"id"`
-	Nome         string `json:"nome"`
-	Clima        string `json:"clima"`
-	Terreno      string `json:"terreno"`
-	QtdAparicoes int    `json:"qtdaparicoes"`
+	ID      string `json:"id"`
+	Name    string `json:"name"`
+	Climate string `json:"climate"`
+	Terrain string `json:"terrain"`
 }
 
 func main() {
