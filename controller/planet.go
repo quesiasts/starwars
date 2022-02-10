@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"context"
 	"log"
 	"net/http"
 	"starwars/models"
@@ -10,8 +11,18 @@ import (
 
 var temp = template.Must(template.ParseGlob("templates/*.html"))
 
+func (c *Client) GetPlanetAppearances(ctx context.Context, planetName string) (int, error) {
+	planet, err := c.GetPlanetByName(ctx, planetName)
+
+	if err != nil {
+		return 0, err
+	}
+
+	return len(planet.FilmURLs), nil
+}
+
 func Index(w http.ResponseWriter, r *http.Request) {
-	allPlanets := models.searchAllPlanet()
+	allPlanets := models.SearchAllPlanet()
 	temp.ExecuteTemplate(w, "Index", allPlanets)
 }
 
@@ -54,7 +65,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 			log.Println("Erro na conversão do id: ", err)
 		}
 
-		models.updatePlanets(idConvertido, name, climate, terrain)
+		models.UpdatePlanets(idConvertido, name, climate, terrain)
 	}
 	http.Redirect(w, r, "/", 301)
 }

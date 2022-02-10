@@ -1,0 +1,52 @@
+{{define "Edit"}}
+
+{{template "_head"}}
+
+{{template "_menu"}}
+<div class="container">
+
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-5">Edit planets</h1>
+                <p class="lead">Update the data</p>
+            </div>
+        </div>
+        <form method="POST" action="update">
+            <input type="hidden" name="id" value="{{.Id}}">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control" value="{{.Name}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="climate">Climate:</label>
+                        <input type="text" name="climate" class="form-control" value="{{.Climate}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="terrain">Terrain:</label>
+                        <input type="text" name="terrain" class="form-control" value="{{.Terrain}}">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" value="save" class="btn btn-success">Save</button>
+            <a class="btn btn-info" href="/">Back</a>
+        </form>
+    </body>
+
+</html>
+</div>
+</body>
+
+</html>
+
+{{end}}

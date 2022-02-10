@@ -1,13 +1,10 @@
-CREATE DATABASE desafioGolang;
+CREATE DATABASE desafioStarWars
 
-CREATE TABLE `planets` (
-	`ID` INT(11) NOT NULL AUTO_INCREMENT,
-	`PLANET_NAME` VARCHAR(80) NOT NULL,
-	`PLANET_TERRAIN` VARCHAR(80) NOT NULL,
-	`PLANET_FILMS` INT(11) NOT NULL,
-	PRIMARY KEY (`ID`)
+CREATE TABLE planets (
+	id SERIAL PRIMARY KEY,
+	name varchar(100) not null,
+	climate varchar(100) not null,
+	terrain varchar(100) not null
 )
-COLLATE='utf8mb4_general_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=1
-;
+
+SELECT * FROM planets

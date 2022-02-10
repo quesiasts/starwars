@@ -5,13 +5,13 @@ import (
 )
 
 type Planet struct {
-	Id      string
+	Id      int
 	Name    string
 	Climate string
 	Terrain string
 }
 
-func searchAllPlanet() []Planet {
+func SearchAllPlanet() []Planet {
 	db := db.ConnectDatabase()
 
 	selectAllPlanets, err := db.Query("select * from planets")
@@ -23,7 +23,7 @@ func searchAllPlanet() []Planet {
 	planets := []Planet{}
 
 	for selectAllPlanets.Next() {
-		var id string
+		var id int
 		var name, climate, terrain string
 
 		err = selectAllPlanets.Scan(&id, &name, &climate, &terrain)
@@ -45,7 +45,7 @@ func searchAllPlanet() []Planet {
 func CreatingNewPlanet(name, climate, terrain string) {
 	db := db.ConnectDatabase()
 
-	insertPlanetOnDatabase, err := db.Prepare("insert string planets(name, climate, terrain) values ($1, $2, $3)")
+	insertPlanetOnDatabase, err := db.Prepare("insert into planets(name, climate, terrain) values ($1, $2, $3)")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -75,7 +75,7 @@ func EditPlanet(id string) Planet {
 	planetForUpdate := Planet{}
 
 	for planetOnDatabase.Next() {
-		var id string
+		var id int
 		var name, climate, terrain string
 
 		err := planetOnDatabase.Scan(&id, &name, &climate, &terrain)
@@ -92,7 +92,7 @@ func EditPlanet(id string) Planet {
 	return planetForUpdate
 }
 
-func updatePlanets(id string, name, climate, terrain string) {
+func UpdatePlanets(id int, name, climate, terrain string) {
 	db := db.ConnectDatabase()
 	updatePlanet, err := db.Prepare("update planets set name=$1, climate=$2, terrain=$3 where id=$4")
 	if err != nil {
