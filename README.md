@@ -22,7 +22,7 @@ Favor ler o arquivo endPoints
 ### Rodando o sistema
 
 ```sh
-$ go run *go -- Rodar o sistema.
+$ go run main.go -- Rodar o sistema.
 ```
 © 2022 GitHub, Inc.
 Terms
