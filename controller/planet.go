@@ -4,12 +4,37 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"net/url"
 	"starwars/models"
 	"strconv"
 	"text/template"
 )
 
+type Planet struct {
+	Name     string   `json:"name"`
+	FilmURLs []string `json:"films"`
+}
+
 var temp = template.Must(template.ParseGlob("templates/*.html"))
+
+func (c *Client) GetPlanetByName(ctx context.Context, planetName string) (Planet, error) {
+	req, err := c.newRequest(ctx, "/planets", url.Values{"search": {planetName}})
+	if err != nil {
+		return Planet{}, err
+	}
+
+	var result searchResult
+
+	if _, err = c.do(req, &result); err != nil {
+		return Planet{}, err
+	}
+
+	if len(result.Planets) < 1 {
+		return Planet{}, err
+	}
+
+	return result.Planets[0], nil
+}
 
 func (c *Client) GetPlanetAppearances(ctx context.Context, planetName string) (int, error) {
 	planet, err := c.GetPlanetByName(ctx, planetName)
