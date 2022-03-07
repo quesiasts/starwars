@@ -28,7 +28,7 @@ $ docker-compose up
 
 Abra outro terminal e rode o comando abaixo para subir o frontend
 ```sh
-$ go run main.go -- Rodar o sistema.
+$ go run main.go -- (localhost:8080)
 ```
 
 © 2022 GitHub, Inc.
