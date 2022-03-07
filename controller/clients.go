@@ -1,4 +1,4 @@
-package client
+package controller
 
 import (
 	"context"
@@ -10,6 +10,10 @@ import (
 	pathlib "path"
 	"strings"
 )
+
+type searchResult struct {
+	Planets []Planet `json:"results"`
+}
 
 // HTTPClient interface
 type HTTPClient interface {

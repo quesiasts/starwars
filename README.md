@@ -21,9 +21,16 @@ Favor ler o arquivo endPoints
   
 ### Rodando o sistema
 
+Abra o terminal e rode o comando abaixo para subir a aplicação com o docker
 ```sh
-$ go run *go -- Rodar o sistema.
+$ docker-compose up
 ```
+
+Abra outro terminal e rode o comando abaixo para subir o frontend
+```sh
+$ go run main.go -- Rodar o sistema.
+```
+
 © 2022 GitHub, Inc.
 Terms
 Privacy
